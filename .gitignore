@@ -1,24 +1,50 @@
-# Compiled class file
-*.class
 
-# Log file
-*.log
+```javascript
+// Define a class for a bank account
+class BankAccount {
+  constructor(accountNumber, ownerName, initialBalance) {
+    this.accountNumber = accountNumber;
+    this.ownerName = ownerName;
+    this.balance = initialBalance;
+    this.transactions = [];
+  }
 
-# BlueJ files
-*.ctxt
+  deposit(amount) {
+    this.balance += amount;
+    this.transactions.push(`Deposit: +$${amount}`);
+  }
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+  withdraw(amount) {
+    if (this.balance >= amount) {
+      this.balance -= amount;
+      this.transactions.push(`Withdrawal: -$${amount}`);
+    } else {
+      console.log("Insufficient funds.");
+    }
+  }
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+  getBalance() {
+    return this.balance;
+  }
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+  getTransactionHistory() {
+    return this.transactions;
+  }
+}
+
+// Create two bank accounts
+const account1 = new BankAccount(123456789, "John Doe", 1000);
+const account2 = new BankAccount(987654321, "Jane Smith", 500);
+
+// Perform some transactions
+account1.deposit(500);
+account1.withdraw(200);
+account2.deposit(1000);
+account2.withdraw(800);
+
+// Display account balances and transaction history
+console.log(account1.ownerName + "'s balance: $" + account1.getBalance());
+console.log(account1.ownerName + "'s transaction history: " + account1.getTransactionHistory());
+console.log(account2.ownerName + "'s balance: $" + account2.getBalance());
+console.log(account2.ownerName + "'s transaction history: " + account2.getTransactionHistory());
+```
